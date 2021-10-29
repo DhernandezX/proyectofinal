@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>RUTAS</title>
+	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   		integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   		crossorigin=""/>		
+	<link rel="stylesheet" type="text/css" href="rutas.css"/>
+	<h1>RUTAS</h1>
+	<select name="select-location" id="select-location">
+		<option value="-1">Seleccione un lugar:</option>
+		<option value="13.597141267578824, -89.82503841313199">Acajutla</option>	
+		<option value="13.746527649117846, -89.49781563614289">Armenia</option>
+		<option value="13.723260640493319, -89.65990470651546">Caluco</option>
+		<option value="13.746283458215432, -89.67706978293668">Izalco</option>
+		<option value="13.841985200739911, -89.74062199323919">Juayua</option>
+		<option value="13.780286719311135, -89.73648642787124">Nahuizalco</option>
+		<option value="13.704241846980361, -89.71537191967266">Nahulingo</option>
+		<option value="13.82964110900167, -89.76122718083064">Salcoatitan</option>		
+		<option value="13.718971207470274, -89.73903826111484">San Antonio del Monte</option>		
+		<option value="13.699345999538263, -89.559206993604">San Julian</option>	
+		<option value="13.789695104355847, -89.76137644414278">Santa Catarina Masahuat</option>			
+		<option value="13.725058626196102, -89.80016338201956">Santo Domingo de Guzman</option>		
+		<option value="13.613972572088665, -89.58295118411912">Santa Isabel Ishuatan</option>
+		<option value="13.638397480088827, -89.60424532425773">Cuisnahuat</option>	
+		<option value="13.709172836150133, -89.72173677013552">Sonsonate</option>
+		<option value="13.737604057616712, -89.71382158785511">Sonzacate</option>					
+	</select>
+	<div id="map"></div>
+
+</head>
+<body>
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   		integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   		crossorigin=""></script>   		
+	<script src="mapa.js"></script>
+	<script>
+        if (navigator.geolocation) { //check if geolocation is available
+            navigator.geolocation.getCurrentPosition(function(position) {
+                console.log(position);
+				var lat = position.coords.latitude;
+                var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+            });
+        }
+    </script>
+	<script>
+		var polygon = L.polygon([
+			[13.597141267578824, -89.82503841313199],
+			[13.746527649117846, -89.49781563614289],
+			[13.723260640493319, -89.65990470651546],
+			[13.746283458215432, -89.67706978293668],
+			[13.841985200739911, -89.74062199323919],
+			[13.780286719311135, -89.73648642787124],
+			[13.704241846980361, -89.71537191967266],
+			[13.82964110900167, -89.76122718083064],
+			[13.718971207470274, -89.73903826111484],
+			[13.699345999538263, -89.559206993604],
+			[13.789695104355847, -89.76137644414278],
+			[13.725058626196102, -89.80016338201956],
+			[13.613972572088665, -89.58295118411912],
+			[13.638397480088827, -89.60424532425773],
+			[13.709172836150133, -89.72173677013552],
+			[13.737604057616712, -89.71382158785511],
+			[13.699345999538263, -89.559206993604],
+			[13.789695104355847, -89.76137644414278],
+			[13.725058626196102, -89.80016338201956],
+			[13.613972572088665, -89.58295118411912],
+	]).addTo(map);
+	</script>
+</body>
+</html>
