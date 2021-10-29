@@ -1,39 +1,153 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<title>RUTAS</title>
-	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/dark.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
    		integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
    		crossorigin=""/>		
 	<link rel="stylesheet" type="text/css" href="rutas.css"/>
-	<h1>RUTAS</h1>
-	<select name="select-location" id="select-location">
-		<option value="-1">Seleccione un lugar:</option>
-		<option value="13.597141267578824, -89.82503841313199">Acajutla</option>	
-		<option value="13.746527649117846, -89.49781563614289">Armenia</option>
-		<option value="13.723260640493319, -89.65990470651546">Caluco</option>
-		<option value="13.746283458215432, -89.67706978293668">Izalco</option>
-		<option value="13.841985200739911, -89.74062199323919">Juayua</option>
-		<option value="13.780286719311135, -89.73648642787124">Nahuizalco</option>
-		<option value="13.704241846980361, -89.71537191967266">Nahulingo</option>
-		<option value="13.82964110900167, -89.76122718083064">Salcoatitan</option>		
-		<option value="13.718971207470274, -89.73903826111484">San Antonio del Monte</option>		
-		<option value="13.699345999538263, -89.559206993604">San Julian</option>	
-		<option value="13.789695104355847, -89.76137644414278">Santa Catarina Masahuat</option>			
-		<option value="13.725058626196102, -89.80016338201956">Santo Domingo de Guzman</option>		
-		<option value="13.613972572088665, -89.58295118411912">Santa Isabel Ishuatan</option>
-		<option value="13.638397480088827, -89.60424532425773">Cuisnahuat</option>	
-		<option value="13.709172836150133, -89.72173677013552">Sonsonate</option>
-		<option value="13.737604057616712, -89.71382158785511">Sonzacate</option>					
-	</select>
-	<div id="map"></div>
-
+	<title>RUTAS</title>
+			
 </head>
 <body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="img/bus-solid-240.png" alt="" width="40px"> <img src="img/sdfghjk.png" alt="" width="100px"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Politica y privacidad</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Terminos y condiciones</a>
+                    </li>
+                    <select name="select-location" id="select-location">
+						<option value="-1">Seleccione un lugar:</option>
+						<option value="13.597141267578824, -89.82503841313199">Acajutla</option>	
+						<option value="13.746527649117846, -89.49781563614289">Armenia</option>
+						<option value="13.723260640493319, -89.65990470651546">Caluco</option>
+						<option value="13.746283458215432, -89.67706978293668">Izalco</option>
+						<option value="13.841985200739911, -89.74062199323919">Juayua</option>
+						<option value="13.780286719311135, -89.73648642787124">Nahuizalco</option>
+						<option value="13.704241846980361, -89.71537191967266">Nahulingo</option>
+						<option value="13.82964110900167, -89.76122718083064">Salcoatitan</option>		
+						<option value="13.718971207470274, -89.73903826111484">San Antonio del Monte</option>		
+						<option value="13.699345999538263, -89.559206993604">San Julian</option>	
+						<option value="13.789695104355847, -89.76137644414278">Santa Catarina Masahuat</option>			
+						<option value="13.725058626196102, -89.80016338201956">Santo Domingo de Guzman</option>		
+						<option value="13.613972572088665, -89.58295118411912">Santa Isabel Ishuatan</option>
+						<option value="13.638397480088827, -89.60424532425773">Cuisnahuat</option>	
+						<option value="13.709172836150133, -89.72173677013552">Sonsonate</option>
+						<option value="13.737604057616712, -89.71382158785511">Sonzacate</option>					
+					</select>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Configuracion
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <span class="dropdown-item">Modo oscuro
+                                <button class="switchDark active" id="switch">
+                                    <span><i class='bx bx-sun'></i></span>
+                                    <span><i class='bx bx-moon'></i></span>
+                                </button>
+                            </span>
+                            
+
+                            <a class=" dropdown-item dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Idiomas
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Español</a>
+                                <a class="dropdown-item" href="#">Inglés</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+						
+
+
+	<div id="map"></div>
+
+	<script src="js/dark.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous">
+    </script>
 	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
    		integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
    		crossorigin=""></script>   		
 	<script src="mapa.js"></script>
+
+	<script>
+		var polygon = L.polygon([
+		[13.72064023621506, -89.72813114067647],
+		[13.720420600239336, -89.72779020837194],
+		[13.720341229871853, -89.72765037269609],
+		[13.719935219487887, -89.7271035994895],
+		[13.719712371384775, -89.72676265182811],
+		[13.719419310543957, -89.72633686004913],
+		[13.719152197476243, -89.72599434120008],
+		[13.718888136838002, -89.72560154435783],
+		[13.7196314744144, -89.72516632545346],
+		[13.72034886163617, -89.72483009135408],
+		[13.721099826338213, -89.72436973345233],
+		[13.72188307876336, -89.7238963305045],
+		[13.721261856151147, -89.72296775876438],
+		[13.721296962140803, -89.72287977227171],
+		[13.721910552947046, -89.72241941436931],
+		[13.722705776458186, -89.72184593097708],
+		[13.723426206950712, -89.72124573739875],
+		[13.723412469949617, -89.7211718915924],
+		[13.722988148844966, -89.72070210656568],
+		[13.722762250969547, -89.72039729621609],
+		[13.723549839925878, -89.71953157197154],
+		[13.723960423045574, -89.71918433956131],
+		[13.724387795050077, -89.71904450388332],
+		[13.725150957399356, -89.71863599516571],
+		[13.72562716945453, -89.71843331199263],
+		[13.726909274006836, -89.71800437783936],
+		[13.72768769121425, -89.71779383872995],
+		[13.728418790510203, -89.71762415049325],
+		[13.728713366417988, -89.71753459281231],
+		[13.729856561604741, -89.71714022478044],
+		[13.731068434001148, -89.71677413812084],
+		[13.732448190416028, -89.71638134127689],
+		[13.732962544437827, -89.71622736491379],
+		[13.73412861287183, -89.71593041049915],
+		[13.734920742448901, -89.71571358664063],
+		[13.735438143555239, -89.71557846452592],
+		[13.736189059938601, -89.71533178810786],
+		[13.737118544568364, -89.71508668287687],
+		[13.738040155690538, -89.71480215036055],
+		[13.739215243809857, -89.71408580814713],
+		[13.740106032476895, -89.71328584622512],
+		[13.740671911675408, -89.71298760258061],
+		[13.741432732737332, -89.71253884345289],
+		[13.741595185310878, -89.71244964909238],
+		[13.741616845645497, -89.71242177585472],
+		[13.742071712210153, -89.71334716734505],
+		[13.741925505196393, -89.71346980959075],
+		
+	]).addTo(map);
+	</script>
 	<script>
         if (navigator.geolocation) { //check if geolocation is available
             navigator.geolocation.getCurrentPosition(function(position) {
@@ -43,29 +157,6 @@
             });
         }
     </script>
-	<script>
-		var polygon = L.polygon([
-			[13.597141267578824, -89.82503841313199],
-			[13.746527649117846, -89.49781563614289],
-			[13.723260640493319, -89.65990470651546],
-			[13.746283458215432, -89.67706978293668],
-			[13.841985200739911, -89.74062199323919],
-			[13.780286719311135, -89.73648642787124],
-			[13.704241846980361, -89.71537191967266],
-			[13.82964110900167, -89.76122718083064],
-			[13.718971207470274, -89.73903826111484],
-			[13.699345999538263, -89.559206993604],
-			[13.789695104355847, -89.76137644414278],
-			[13.725058626196102, -89.80016338201956],
-			[13.613972572088665, -89.58295118411912],
-			[13.638397480088827, -89.60424532425773],
-			[13.709172836150133, -89.72173677013552],
-			[13.737604057616712, -89.71382158785511],
-			[13.699345999538263, -89.559206993604],
-			[13.789695104355847, -89.76137644414278],
-			[13.725058626196102, -89.80016338201956],
-			[13.613972572088665, -89.58295118411912],
-	]).addTo(map);
-	</script>
+
 </body>
 </html>
